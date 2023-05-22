@@ -22,10 +22,6 @@ class AttributeAnnotationFactory implements AnnotationFactoryInterface
 
     public function build(\Reflector $reflector, Context $context): array
     {
-        if (\PHP_VERSION_ID < 80100 || !method_exists($reflector, 'getAttributes')) {
-            return [];
-        }
-
         if ($reflector instanceof \ReflectionProperty && method_exists($reflector, 'isPromoted') && $reflector->isPromoted()) {
             // handled via __construct() parameter
             return [];
